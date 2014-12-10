@@ -59,39 +59,44 @@ optional. When not provided defaults will be used.
 tests.yaml
 ----------
 
-A sample `tests.yaml` file::
+A sample `tests.yaml` file, with a description of each key:
 
-    bootstrap: false
-    reset: false
-    setup: script
-    teardown: script
-    tests: "[0-9]*"
-    virtualenv: true
-    sources:
-        - ppas, etc
-    packages:
-        - amulet
-        - python-requests
+```
+# Allow bootstrap of current env, default: true
+bootstrap: false
 
-Explanation of keys:
+# Use juju-deployer to reset the env between each test, default: true
+reset: false
 
-bootstrap: Allow bootstrap of current env, default: true
+# optional name of script in test dir to run before each test
+setup: script
 
-reset: Use juju-deployer to reset env between test, default: true
+# optional name of script to run after each test
+teardown: script
 
-setup: optional name of script in test dir to run before each test
+# glob pattern of files in 'tests/' to treat as tests, only executable
+# files will be used.
+tests: "[0-9]*"
 
-teardown: optional name of script to run after each test
+# create and activate a virutalenv for the running of all tests, default: true
+virtualenv: true
 
-tests: glob of files in testdir to treat as tests, only executable
-       files will be used.
+# list of package sources to add automatically 
+sources:
+    - ppas, etc
 
-virtualenv: create and activate a virutalenv for the running of all tests
-defaults to true
+# list of packages to install automatically with apt
+packages:
+    - amulet
+    - python-requests
+```
 
-sources: list of package sources to add automatically 
 
-packages: list of packages to install automatically with apt
+
+
+
+
+
 
 
 Finding Tests
